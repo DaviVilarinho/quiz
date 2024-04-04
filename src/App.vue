@@ -1,26 +1,23 @@
 <template>
-  <div>
+  <div class="ctr">
     <h1 class="title">QUIZ TIME!</h1>
-  </div>
-  <quiz-question v-for="question in questions" :key="question['q']">
-    <template v-slot:question>
-      <h2>{{ question['q'] }}</h2>
-    </template>
+    <quiz-question v-for="question in questions" :key="question['q']">
+      <template v-slot:question>
+        <h2>{{ question['q'] }}</h2>
+      </template>
 
-    <template v-slot:answers>
-      <quiz-answer v-for="answer in question['answers']" :key="answer['text']" 
-        :text="answer['text']"
-        :isCorrect="answer['is_correct']"
-        :questionId="question['q']"
-        :selectedAnswerInQuestion="correctAnswered[question['q']]?.selectedAnswer"
-        :isSubmitted="isSubmitted"
-        @question-answered="markAnswered">
-      </quiz-answer>
-    </template>
-  </quiz-question>
-  <div>
-    <button class="btn reset-btn" @click.prevent="reset">Reset</button>
-    <button class="btn submit-btn" @click.prevent="submit">Submit</button>
+      <template v-slot:answers>
+        <quiz-answer v-for="answer in question['answers']" :key="answer['text']" :text="answer['text']"
+          :isCorrect="answer['is_correct']" :questionId="question['q']"
+          :selectedAnswerInQuestion="correctAnswered[question['q']]?.selectedAnswer" :isSubmitted="isSubmitted"
+          @question-answered="markAnswered">
+        </quiz-answer>
+      </template>
+    </quiz-question>
+    <div>
+      <button class="btn reset-btn" @click.prevent="reset">Reset</button>
+      <button class="btn submit-btn" @click.prevent="submit">Submit</button>
+    </div>
   </div>
 </template>
 
@@ -228,5 +225,4 @@ body {
   border: 0;
   outline: 0;
 }
-
 </style>
